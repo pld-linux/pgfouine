@@ -1,4 +1,5 @@
 Summary:	PgFouine PostgreSQL log analyzer
+Summary(pl.UTF-8):	PgFouine - analizator logów PostgreSQL-a
 Name:		pgfouine
 Version:	1.0
 Release:	0.1
@@ -25,21 +26,32 @@ pgFouine can also:
   strategy,
 - generate Tsung sessions file to benchmark your PostgreSQL server.
 
+%description -l pl.UTF-8
+pgFouine to analizator logów PostgreSQL-a. Generuje raporty tekstowe
+lub w HTML-u z plików logów PostgreSQL-a. Raporty te zawierają listę
+najwolniejszych zapytań, zapytania, które zajęły najwięcej czasu itp.
+
+pgFouine potrafi także:
+- analizować wyjście VACUUM VERBOSE, aby pomóc przy poprawianiu
+  strategii VACUUM
+- generować pliki sesji Tsunga do mierzenia wydajności serwera
+  PostgreSQL
+
 %prep
 %setup -q
 %patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_datadir}/%{name}
-install -d $RPM_BUILD_ROOT/%{_bindir}
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}
+install -d $RPM_BUILD_ROOT%{_bindir}
 
 for i in include version.php; do
-	cp -rp $i $RPM_BUILD_ROOT/%{_datadir}/%{name}/
+	cp -rp $i $RPM_BUILD_ROOT%{_datadir}/%{name}
 done
 
-install pgfouine.php $RPM_BUILD_ROOT/%{_bindir}/
-install pgfouine_vacuum.php $RPM_BUILD_ROOT/%{_bindir}/
+install pgfouine.php $RPM_BUILD_ROOT%{_bindir}
+install pgfouine_vacuum.php $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
