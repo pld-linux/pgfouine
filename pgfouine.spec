@@ -2,7 +2,7 @@ Summary:	PgFouine PostgreSQL log analyzer
 Summary(pl.UTF-8):	PgFouine - analizator logów PostgreSQL-a
 Name:		pgfouine
 Version:	1.2
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Development/Tools
 Source0:	http://pgfouine.projects.postgresql.org/releases/%{name}-%{version}.tar.gz
@@ -33,9 +33,9 @@ najwolniejszych zapytań, zapytania, które zajęły najwięcej czasu itp.
 
 pgFouine potrafi także:
 - analizować wyjście VACUUM VERBOSE, aby pomóc przy poprawianiu
-  strategii VACUUM
+  strategii VACUUM,
 - generować pliki sesji Tsunga do mierzenia wydajności serwera
-  PostgreSQL
+  PostgreSQL.
 
 %prep
 %setup -q
@@ -43,22 +43,17 @@ pgFouine potrafi także:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}
-install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}}
 
-for i in include version.php; do
-	cp -rp $i $RPM_BUILD_ROOT%{_datadir}/%{name}
-done
+cp -a include version.php $RPM_BUILD_ROOT%{_datadir}/%{name}
 
-install pgfouine.php $RPM_BUILD_ROOT%{_bindir}
-install pgfouine_vacuum.php $RPM_BUILD_ROOT%{_bindir}
+install pgfouine{,_vacuum}.php $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog COPYING THANKS README rpm-specific/sources/pgfouine-tutorial.txt
-%attr(755,root,root) %{_bindir}/pgfouine.php
-%attr(755,root,root) %{_bindir}/pgfouine_vacuum.php
+%doc AUTHORS ChangeLog THANKS README rpm-specific/sources/pgfouine-tutorial.txt
+%attr(755,root,root) %{_bindir}/pgfouine*.php
 %{_datadir}/%{name}
