@@ -46,8 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}}
 
 cp -a include version.php $RPM_BUILD_ROOT%{_datadir}/%{name}
-
-install pgfouine{,_vacuum}.php $RPM_BUILD_ROOT%{_bindir}
+cp -a pgfouine{,_vacuum}.php $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
