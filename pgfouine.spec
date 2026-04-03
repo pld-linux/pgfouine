@@ -2,7 +2,7 @@ Summary:	PgFouine PostgreSQL log analyzer
 Summary(pl.UTF-8):	PgFouine - analizator logów PostgreSQL-a
 Name:		pgfouine
 Version:	1.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Development/Tools
 Source0:	http://pgfouine.projects.postgresql.org/releases/%{name}-%{version}.tar.gz
